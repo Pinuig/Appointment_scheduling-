@@ -21,7 +21,7 @@ include('includes/dbconnection.php');
                 <?php } ?>
                 </div>
                 <div class="table-responsive">
-                                    <table class="table table-bordered table-hover js-basic-example dataTable table-custom">
+                                    <table class="datatable table table-stripped ">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -63,8 +63,8 @@ include('includes/dbconnection.php');
                                             if($_SESSION['name']){?>
                                             <td class="text-right">
                                             <div class="dropdown dropdown-action">
-                                                <a href="edit-doctor.php?id=<?php echo $row['id'];?>" class="action-icon"  aria-expanded="false"><i class="fa fa-pencil m-r-5"></i></a>
-                                                 <a href="doctors.php?ids=<?php echo $row['id'];?>" onclick="return confirmDelete()" class="action-icon"  aria-expanded="false"><i class="fa fa-trash-o m-r-5"></i></a>
+                                                <a href="edit-doctor.php?id=<?php echo $row['id'];?>" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-pencil m-r-5"></i></a>
+                                                 <a href="doctors.php?ids=<?php echo $row['id'];?>" onclick="return confirmDelete()" class="action-icon dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-trash-o m-r-5"></i></a>
                                                 
                                             </div>
                                         </td>

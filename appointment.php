@@ -2,27 +2,27 @@
 session_start();
 if(empty($_SESSION['name']))
 {
-  header('location:index.php');
+  header('location: admin/index.php');
 }
 
 include('admin/includes/dbconnection.php');
     
-$fetch_query = mysqli_query($connection, "SELECT MAX(id) AS id FROM tbl_appointment");
-$row = mysqli_fetch_row($fetch_query);
+// $fetch_query = mysqli_query($connection, "SELECT MAX(id) AS id FROM tbl_appointment");
+// $row = mysqli_fetch_row($fetch_query);
 
- if($row[0]==0)
-{
- $id = 1;
-}
-else
-{
- $id = $row[0] + 1;
-}
+//  if($row[0]==0)
+// {
+//  $id = 1;
+// }
+// else
+// {
+//  $id = $row[0] + 1;
+// }
 
 if(isset($_REQUEST['add-appointment']))
 {
 
-$APT_num = 'APT-'.$id;
+// $APT_num = 'APT-'.$id;
 $Name = $_REQUEST['Name'];
 $Email = $_REQUEST['Email'];
 $doctor_name = $_REQUEST['doctor_name'];
@@ -34,15 +34,15 @@ $message = $_REQUEST['message'];
 
 
 
-$insert_query = mysqli_query($connection, "INSERT INTO tbl_appointment SET APT_num='$APT_num' Name='$Name', doctor_name='$doctor_name', specialization='$specialization',Phone='$Phone', Date='$Date', time='$time',  message='$message'");
+$insert_query = mysqli_query($connection, "INSERT INTO tbl_appointment SET  Name='$Name', Email='$Email', doctor_name='$doctor_name', specialization='$specialization',Phone='$Phone', Date='$Date', time='$time',  message='$message'");
 
 if($insert_query>0)
 {
-   $msg = "Appointment created successfully";
+   echo  "Appointment created successfully";
 }
 else
 {
-   $msg = "Error!";
+   echo  "Error!";
 }
 }
 ?>
@@ -144,10 +144,10 @@ else
                     <h2>Schedule An Appointment</h2>
                     <p>Let's Schedule An Appointment For Our Checkup</p>
 
-                    <div class="form-group text-left">
+                    <!-- <div class="form-group text-left">
                     <label>APT-No <span class="text-danger">*</span></label>
                     <input class="form-control" type="text" name="APT_num" value="<?php if(!empty($id)) { echo 'APT-'.$id; } else { echo "APT-1"; } ?>" disabled> 
-                    </div>
+                    </div> -->
                     <div class="form-group text-left">
                       <label for="form_name"
                         ><i class="fa fa-user-o"></i> Name
@@ -253,7 +253,7 @@ else
                         placeholder="enter a date"
                         required="required"
                         data-error="Subject is required."
-                        type="text"
+                        type="date"
                       />
                       <div class="help-block with-errors"></div>
                     </div>
@@ -271,7 +271,7 @@ else
                         placeholder="enter a time"
                         required="required"
                         data-error="Subject is required."
-                        type="text"
+                        type="time"
                       />
                       <div class="help-block with-errors"></div>
                     </div>
@@ -369,6 +369,12 @@ else
     <script type="text/javascript" src="js/tweetie.js"></script>
     
     <script type="text/javascript" src="js/script.js"></script>
+
+    <script language="JavaScript" type="text/javascript">
+function confirmDelete(){
+    return confirm('Are you sure want to delete this Doctor?');
+}
+</script>
   </body>
 
  
